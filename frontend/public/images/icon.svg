@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .bg       { fill: #1e1e1e; }
+      .body     { fill: #2a2a2a; stroke: #555; }
+      .top      { fill: #333; }
+      .screen   { fill: #0f0f0f; }
+      .vent     { fill: #555; }
+      .bolt     { fill: #555; }
+    }
+    @media (prefers-color-scheme: light) {
+      .bg       { fill: #f0ede6; }
+      .body     { fill: #f0ede6; stroke: #c8c5bc; }
+      .top      { fill: #e2dfd8; }
+      .screen   { fill: #161616; }
+      .vent     { fill: #b8b5ad; }
+      .bolt     { fill: #b8b5ad; }
+    }
+  </style>
+
+  <!-- Background rounded square (for favicon contexts) -->
+  <rect class="bg" width="512" height="512" rx="96"/>
+
+  <!-- Machine body -->
+  <rect class="body" x="96" y="80" width="320" height="352" rx="40" stroke-width="2"/>
+
+  <!-- Top bar -->
+  <rect class="top" x="96" y="80" width="320" height="76" rx="40"/>
+  <rect class="top" x="96" y="132" width="320" height="24"/>
+
+  <!-- Bolts -->
+  <circle class="bolt" cx="136" cy="118" r="12"/>
+  <circle class="bolt" cx="376" cy="118" r="12"/>
+
+  <!-- Screen -->
+  <rect class="screen" x="120" y="172" width="272" height="184" rx="12"/>
+
+  <!-- Log level bars -->
+  <!-- DEBUG gray -->
+  <rect fill="#5F5E5A" x="138" y="190" width="52" height="16" rx="4"/>
+  <rect fill="#2e2e2e" x="198" y="194" width="178" height="8" rx="3"/>
+
+  <!-- INFO blue -->
+  <rect fill="#185FA5" x="138" y="216" width="44" height="16" rx="4"/>
+  <rect fill="#2e2e2e" x="190" y="220" width="168" height="8" rx="3"/>
+
+  <!-- SUCCESS green -->
+  <rect fill="#3B6D11" x="138" y="242" width="76" height="16" rx="4"/>
+  <rect fill="#2e2e2e" x="222" y="246" width="148" height="8" rx="3"/>
+
+  <!-- WARNING amber -->
+  <rect fill="#854F0B" x="138" y="268" width="70" height="16" rx="4"/>
+  <rect fill="#2e2e2e" x="216" y="272" width="152" height="8" rx="3"/>
+
+  <!-- ERROR red -->
+  <rect fill="#A32D2D" x="138" y="294" width="56" height="16" rx="4"/>
+  <rect fill="#2e2e2e" x="202" y="298" width="160" height="8" rx="3"/>
+
+  <!-- Cursor -->
+  <rect fill="#1D9E75" x="138" y="318" width="14" height="20" rx="3"/>
+
+  <!-- Bottom vents -->
+  <rect class="vent" x="164" y="374" width="56" height="6" rx="3"/>
+  <rect class="vent" x="292" y="374" width="56" height="6" rx="3"/>
+  <rect class="vent" x="164" y="386" width="56" height="6" rx="3"/>
+  <rect class="vent" x="292" y="386" width="56" height="6" rx="3"/>
+</svg>

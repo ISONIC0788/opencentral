@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary -->
+    <title>LogMachine — Collaborative distributed logging</title>
+    <meta name="description" content="Beautiful, pluggable logging for distributed teams. Color-coded output, log forwarding via HTTP or Socket.IO, custom log levels, and a central dashboard — all from a standard logging interface.">
+    <meta name="author" content="Buffer Punk">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://logmachine.org">
+    <meta property="og:title" content="LogMachine — Collaborative distributed logging">
+    <meta property="og:description" content="Beautiful, pluggable logging for distributed teams. Color-coded output, log forwarding via HTTP or Socket.IO, custom log levels, and a central dashboard — all from a standard logging interface.">
+    <meta property="og:image" content="https://logmachine.org/images/icon.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://logmachine.org">
+    <meta name="twitter:title" content="LogMachine — Collaborative distributed logging">
+    <meta name="twitter:description" content="Beautiful, pluggable logging for distributed teams. Color-coded output, log forwarding via HTTP or Socket.IO, custom log levels, and a central dashboard — all from a standard logging interface.">
+    <meta name="twitter:image" content="https://logmachine.org/images/icon.svg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/icon.svg">
+    <link rel="apple-touch-icon" href="/images/icon.svg">
+    <script>
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.style.backgroundColor = '#1F2937'
+        document.documentElement.classList.add('dark')
+      }
+    </script>
+  </head>
+  <body class="bg-gray-200 dark:bg-gray-800">
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

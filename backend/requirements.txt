@@ -1,0 +1,11 @@
+fastapi[standard]
+groq
+uvicorn
+python-socketio
+psycopg[binary]
+logmachine
+python-dotenv
+requests
+redis==6.1.0
+markdownify
+dramatiq
