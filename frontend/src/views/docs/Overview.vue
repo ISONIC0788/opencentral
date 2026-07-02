@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8">
+  <div class="bg-[#ffffff] dark:bg-[#000000] border border-neutral-200/80 dark:border-neutral-800/80 rounded-md p-8 shadow-none">
     <div class="prose dark:prose-invert max-w-none">
       <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">LogMachine Documentation</h1>
 
@@ -9,30 +9,30 @@
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
-          <h3 class="text-xl font-semibold text-blue-900 dark:text-blue-100 mb-3">Quick Start</h3>
-          <p class="text-blue-800 dark:text-blue-200 mb-4">
+        <div class="bg-[#ffffff] dark:bg-[#0a0a0a] border border-neutral-200 dark:border-neutral-800 p-6 rounded-md">
+          <h3 class="text-xl font-semibold text-[#171717] dark:text-[#ffffff] mb-3">Quick Start</h3>
+          <p class="text-[#171717] dark:text-[#ffffff] mb-4">
             Get up and running with LogMachine in minutes. Choose your language and start logging collaboratively.
           </p>
           <a
             href="https://logmachine.org/docs/setup"
-            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            class="inline-flex items-center px-4 py-2 bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-md text-sm font-medium transition-colors"
           >
             Setup Guide →
           </a>
         </div>
 
-        <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-lg border border-green-200 dark:border-green-800">
-          <h3 class="text-xl font-semibold text-green-900 dark:text-green-100 mb-3">SDKs</h3>
-          <p class="text-green-800 dark:text-green-200 mb-4">
+        <div class="bg-[#ffffff] dark:bg-[#0a0a0a] border border-neutral-200 dark:border-neutral-800 p-6 rounded-md">
+          <h3 class="text-xl font-semibold text-[#171717] dark:text-[#ffffff] mb-3">SDKs</h3>
+          <p class="text-[#171717] dark:text-[#ffffff] mb-4">
             LogMachine supports multiple programming languages. Find your SDK below.
           </p>
           <div class="flex flex-wrap gap-2">
-            <router-link to="/docs/python" class="px-3 py-1 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 rounded text-sm hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Python</router-link>
-            <router-link to="/docs/javascript" class="px-3 py-1 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 rounded text-sm hover:bg-green-200 dark:hover:bg-green-700 transition-colors">JavaScript</router-link>
-            <router-link to="/docs/go" class="px-3 py-1 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 rounded text-sm hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Go</router-link>
-            <router-link to="/docs/rust" class="px-3 py-1 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 rounded text-sm hover:bg-green-200 dark:hover:bg-green-700 transition-colors">Rust</router-link>
-            <router-link to="/docs/php" class="px-3 py-1 bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 rounded text-sm hover:bg-green-200 dark:hover:bg-green-700 transition-colors">PHP</router-link>
+            <router-link to="/docs/python" class="px-3 py-1 bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-[#171717] dark:text-[#ffffff] rounded-md text-sm font-medium transition-colors border border-neutral-200/50 dark:border-neutral-700/50">Python</router-link>
+            <router-link to="/docs/javascript" class="px-3 py-1 bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-[#171717] dark:text-[#ffffff] rounded-md text-sm font-medium transition-colors border border-neutral-200/50 dark:border-neutral-700/50">JavaScript</router-link>
+            <router-link to="/docs/go" class="px-3 py-1 bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-[#171717] dark:text-[#ffffff] rounded-md text-sm font-medium transition-colors border border-neutral-200/50 dark:border-neutral-700/50">Go</router-link>
+            <router-link to="/docs/rust" class="px-3 py-1 bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-[#171717] dark:text-[#ffffff] rounded-md text-sm font-medium transition-colors border border-neutral-200/50 dark:border-neutral-700/50">Rust</router-link>
+            <router-link to="/docs/php" class="px-3 py-1 bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 text-[#171717] dark:text-[#ffffff] rounded-md text-sm font-medium transition-colors border border-neutral-200/50 dark:border-neutral-700/50">PHP</router-link>
           </div>
         </div>
       </div>
@@ -70,10 +70,10 @@
         See the dedicated <router-link to="/docs/viewing-logs" class="text-blue-600 dark:text-blue-400 underline">Viewing Logs</router-link> page for CLI, web UI, and file-based viewing options.
       </p>
 
-      <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6">
-        <h3 class="text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-2">💡 Pro Tip</h3>
-        <p class="text-yellow-700 dark:text-yellow-300">
-          Start with the default hosted server at <code class="bg-yellow-100 dark:bg-yellow-800 px-2 py-1 rounded">https://logmachine.org</code>
+      <div class="bg-neutral-50 dark:bg-neutral-900/40 border border-neutral-200 dark:border-neutral-800 rounded-md p-6">
+        <h3 class="text-lg font-semibold text-[#171717] dark:text-[#ffffff] mb-2">💡 Pro Tip</h3>
+        <p class="text-neutral-600 dark:text-neutral-300">
+          Start with the default hosted server at <code class="bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded-md px-2 py-1">https://logmachine.org</code>
           to try LogMachine without setting up your own infrastructure.
         </p>
       </div>
