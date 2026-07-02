@@ -66,15 +66,15 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-4 py-10 text-white">
+  <div class="min-h-screen bg-[#fafafa] dark:bg-[#000000] text-[#171717] dark:text-[#ffffff] px-4 py-10">
     <div class="mx-auto flex min-h-[calc(100vh-5rem)] max-w-5xl items-center">
       <div class="grid w-full grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <section class="rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-2xl shadow-black/30 backdrop-blur">
-          <p class="mb-4 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-1 text-sm font-medium text-cyan-200">Secure sign in</p>
-          <h1 class="max-w-xl text-4xl font-bold tracking-tight md:text-6xl">
+        <section class="rounded-md border border-neutral-200 dark:border-neutral-800 bg-[#ffffff] dark:bg-[#0a0a0a] p-8 shadow-sm">
+          <p class="mb-4 inline-flex rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 px-4 py-1 text-sm font-medium text-neutral-600 dark:text-neutral-400">Secure sign in</p>
+          <h1 class="max-w-xl text-4xl font-bold tracking-tight md:text-6xl text-[#171717] dark:text-[#ffffff]">
             Choose how you want to sign in.
           </h1>
-          <p class="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+          <p class="mt-6 max-w-xl text-lg leading-8 text-neutral-500 dark:text-neutral-400">
             LogMachine uses browser-based authentication so SDKs can hand off login to the web and receive a token back when the session completes.
           </p>
 
@@ -85,52 +85,52 @@ onMounted(async () => {
               type="button"
               @click="startLogin(provider.id)"
               :disabled="!provider.available"
-              class="group rounded-2xl border border-white/10 bg-slate-900/80 p-5 text-left transition hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+              class="group rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-50 hover:bg-neutral-100/80 dark:bg-neutral-900 dark:hover:bg-neutral-800/80 p-5 text-left transition disabled:cursor-not-allowed disabled:opacity-60"
             >
               <div class="flex items-center justify-between gap-4">
                 <div>
-                  <p class="text-lg font-semibold text-white">Continue with {{ provider.name }}</p>
-                  <p class="mt-1 text-sm text-slate-400">{{ provider.description }}</p>
-                  <p v-if="!provider.available" class="mt-2 text-xs text-amber-300">Not configured yet in the backend</p>
+                  <p class="text-lg font-semibold text-[#171717] dark:text-[#ffffff]">Continue with {{ provider.name }}</p>
+                  <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">{{ provider.description }}</p>
+                  <p v-if="!provider.available" class="mt-2 text-xs text-neutral-500 dark:text-neutral-400">Not configured yet in the backend</p>
                 </div>
-                <span class="text-2xl text-slate-400 group-hover:text-cyan-300">→</span>
+                <span class="text-2xl text-neutral-400 dark:text-neutral-500 transition-colors group-hover:text-black dark:group-hover:text-white">→</span>
               </div>
             </button>
           </div>
 
-          <div class="mt-6 rounded-2xl border border-white/10 bg-slate-950/40 p-4" v-if="deviceCode || userCode ">
-            <p class="text-sm font-semibold text-white">Device code</p>
+          <div class="mt-6 rounded-md border border-neutral-200 dark:border-neutral-800 bg-[#ffffff] dark:bg-[#0a0a0a] p-4" v-if="deviceCode || userCode">
+            <p class="text-sm font-semibold text-[#171717] dark:text-[#ffffff]">Device code</p>
             <input
               v-model="enteredUserCode"
               type="text"
               maxlength="16"
               placeholder="Enter code, e.g. 1A2B3C4D"
-              class="mt-3 w-full rounded-xl border border-white/15 bg-slate-900 px-3 py-2 font-mono text-sm text-white outline-none focus:border-cyan-400"
+              class="mt-3 w-full rounded-md border border-neutral-200 dark:border-neutral-700 bg-[#ffffff] dark:bg-[#000000] px-3 py-2 font-mono text-sm text-[#171717] dark:text-[#ffffff] outline-none focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400"
             />
           </div>
 
-          <div v-if="loading" class="mt-6 text-sm text-slate-400">Loading providers...</div>
-          <div v-else-if="errorMessage" class="mt-6 rounded-xl border border-rose-400/30 bg-rose-400/10 px-4 py-3 text-sm text-rose-200">
+          <div v-if="loading" class="mt-6 text-sm text-neutral-500 dark:text-neutral-400">Loading providers...</div>
+          <div v-else-if="errorMessage" class="mt-6 rounded-md border border-rose-500/30 bg-[#ffffff] dark:bg-[#0a0a0a] px-4 py-3 text-sm text-rose-600 dark:text-rose-400">
             {{ errorMessage }}
           </div>
           <!-- <p class="mt-8 text-sm text-slate-400">
             Callback URL: <span class="break-all text-slate-200">{{ callbackUrl }}</span>
           </p> -->
-          <p v-if="userCode" class="mt-3 text-sm text-amber-200">
-            Device login code: <span class="font-mono font-semibold">{{ userCode }}</span>
+          <p v-if="userCode" class="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+            Device login code: <span class="font-mono font-semibold text-[#171717] dark:text-[#ffffff]">{{ userCode }}</span>
           </p>
         </section>
 
-        <aside class="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/15 via-slate-900 to-slate-950 p-8 shadow-2xl shadow-black/30">
-          <h2 class="text-2xl font-semibold text-white">What happens next</h2>
-          <ol class="mt-6 space-y-4 text-slate-300">
-            <li class="rounded-2xl border border-white/10 bg-white/5 p-4">1. Pick Google or GitHub in this screen.</li>
-            <li class="rounded-2xl border border-white/10 bg-white/5 p-4">2. Finish the browser sign-in flow.</li>
-            <li class="rounded-2xl border border-white/10 bg-white/5 p-4">3. The backend sets a secure HTTP-only session cookie.</li>
-            <li class="rounded-2xl border border-white/10 bg-white/5 p-4">4. The web app uses that cookie to authenticate API calls automatically.</li>
+        <aside class="rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/30 p-8 shadow-none">
+          <h2 class="text-2xl font-semibold text-[#171717] dark:text-[#ffffff]">What happens next</h2>
+          <ol class="mt-6 space-y-4 text-neutral-500 dark:text-neutral-400">
+            <li class="rounded-md border border-neutral-200/60 dark:border-neutral-800/60 bg-[#ffffff] dark:bg-[#000000] p-4 text-sm">1. Pick Google or GitHub in this screen.</li>
+            <li class="rounded-md border border-neutral-200/60 dark:border-neutral-800/60 bg-[#ffffff] dark:bg-[#000000] p-4 text-sm">2. Finish the browser sign-in flow.</li>
+            <li class="rounded-md border border-neutral-200/60 dark:border-neutral-800/60 bg-[#ffffff] dark:bg-[#000000] p-4 text-sm">3. The backend sets a secure HTTP-only session cookie.</li>
+            <li class="rounded-md border border-neutral-200/60 dark:border-neutral-800/60 bg-[#ffffff] dark:bg-[#000000] p-4 text-sm">4. The web app uses that cookie to authenticate API calls automatically.</li>
           </ol>
 
-          <div class="mt-8 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-5 text-sm text-cyan-100">
+          <div class="mt-8 rounded-md border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900 p-5 text-sm text-neutral-600 dark:text-neutral-400">
             This page is provider-agnostic in the SDK. The provider choice lives here in the browser UI, not in the SDK API.
           </div>
         </aside>
