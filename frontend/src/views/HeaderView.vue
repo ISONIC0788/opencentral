@@ -56,7 +56,7 @@ if (storedTheme) {
 </script>
 
 <template>
-  <nav class="border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-700 dark:bg-gray-900/90">
+  <nav class="border-b border-neutral-200/80 bg-[#ffffff]/90 dark:border-neutral-800/80 dark:bg-[#000000]/90 backdrop-blur-md">
     <div class="mx-auto flex max-w-screen-xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
       <RouterLink to="/" class="flex items-center gap-3 min-w-0">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="50" height="50" 
@@ -107,8 +107,8 @@ if (storedTheme) {
           <rect class="dark:fill-[#555] fill-[#b8b5ad]" x="292" y="386" width="56" height="6" rx="3"/>
         </svg>
         <div class="min-w-0">
-          <p class="hidden sm:block truncate text-lg font-semibold text-gray-900 dark:text-white">Log Machine</p>
-          <p class="hidden text-xs text-gray-500 dark:text-gray-400 md:block">Collaborative logging for distributed teams</p>
+          <p class="hidden sm:block truncate text-lg font-semibold text-[#171717] dark:text-[#ffffff]">Log Machine</p>
+          <p class="hidden text-xs text-neutral-500 dark:text-neutral-400 md:block">Collaborative logging for distributed teams</p>
         </div>
       </RouterLink>
 
@@ -118,10 +118,10 @@ if (storedTheme) {
           v-show="!item.adminOnly || item.usable"
           :key="item.to"
           :to="item.to"
-          class="rounded-full px-4 py-2 text-sm font-medium transition-colors"
-          :class="item.adminOnly ? 
-            (route.path === item.to || route.path.startsWith('/admin') ? 'bg-purple-600 text-white dark:bg-purple-500' : 'text-gray-600 hover:bg-purple-50 hover:text-purple-700 dark:text-gray-300 dark:hover:bg-purple-900/30 dark:hover:text-purple-300') :
-            (route.path === item.to || (item.to === '/docs' && route.path.startsWith('/docs')) ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white')"
+          class="px-4 py-2 text-sm font-medium transition-colors rounded-md"
+          :class="(route.path === item.to || (item.to === '/docs' && route.path.startsWith('/docs')) || (item.to === '/admin' && route.path.startsWith('/admin'))) ? 
+            'bg-neutral-100 text-[#171717] dark:bg-neutral-900 dark:text-[#ffffff]' : 
+            'text-neutral-500 hover:text-[#171717] hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-[#ffffff] dark:hover:bg-neutral-900/50'"
         >
           {{ item.label }}
         </RouterLink>
@@ -131,7 +131,7 @@ if (storedTheme) {
         <RouterLink
           v-if="authLoaded && !isAuthenticated"
           to="/auth/login"
-          class="hidden rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-4 py-2 text-sm font-semibold text-white transition hover:from-emerald-600 hover:to-teal-600 md:inline-flex"
+          class="hidden bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 font-medium px-4 py-2 text-sm rounded-md md:inline-flex transition-colors"
         >
           Sign in
         </RouterLink>
@@ -139,7 +139,7 @@ if (storedTheme) {
         <RouterLink
           v-if="authLoaded && isAuthenticated"
           to="/profile"
-          class="hidden rounded-full border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-500/40 dark:bg-emerald-500/10 dark:text-emerald-300 dark:hover:bg-emerald-500/20 md:inline-flex"
+          class="hidden border border-neutral-200 dark:border-neutral-800 text-[#171717] dark:text-[#ffffff] bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900 font-medium px-4 py-2 text-sm rounded-md md:inline-flex transition-colors"
         >
           {{ authUser?.username || 'Profile' }}
         </RouterLink>
@@ -148,7 +148,7 @@ if (storedTheme) {
           v-if="authLoaded && isAuthenticated"
           type="button"
           @click="signOut"
-          class="hidden rounded-full border border-rose-300 bg-rose-50 px-4 py-2 text-sm font-semibold text-rose-700 transition hover:bg-rose-100 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-300 dark:hover:bg-rose-500/20 md:inline-flex"
+          class="hidden text-neutral-500 hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400 font-medium px-4 py-2 text-sm rounded-md bg-transparent md:inline-flex transition-colors"
         >
           Sign out
         </button>
@@ -175,7 +175,7 @@ if (storedTheme) {
 
         <RouterLink
           to="/docs"
-          class="hidden rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300 dark:hover:bg-blue-950/70 md:inline-flex lg:hidden"
+          class="hidden border border-neutral-200 dark:border-neutral-800 text-[#171717] dark:text-[#ffffff] bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900 font-medium px-4 py-2 text-sm rounded-md md:inline-flex lg:hidden transition-colors"
         >
           Docs
         </RouterLink>
@@ -183,7 +183,7 @@ if (storedTheme) {
         <button
           type="button"
           @click="toggleMenu"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 transition hover:border-gray-300 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:border-gray-600 dark:hover:bg-gray-700 lg:hidden"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-neutral-200 bg-[#ffffff] text-neutral-700 transition hover:bg-neutral-50 dark:border-neutral-800 dark:bg-[#000000] dark:text-neutral-200 dark:hover:bg-neutral-900 lg:hidden"
           :aria-expanded="mobileMenuOpen"
           aria-controls="mobile-menu"
           aria-label="Toggle navigation menu"
@@ -206,13 +206,13 @@ if (storedTheme) {
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <div v-if="isMenuOpen" id="mobile-menu" class="border-t border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-gray-900 lg:hidden">
+      <div v-if="isMenuOpen" id="mobile-menu" class="bg-[#ffffff] dark:bg-[#000000] border-t border-neutral-200 dark:border-neutral-800 px-4 py-3 lg:hidden">
         <div class="mx-auto flex max-w-screen-xl flex-col gap-2">
           <button
             v-if="authLoaded && !isAuthenticated"
             type="button"
             @click="navigate('/auth/login')"
-            class="rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-3 py-2 text-left text-sm font-semibold text-white transition hover:from-emerald-600 hover:to-teal-600"
+            class="rounded-md bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 px-3 py-2 text-left text-sm font-semibold transition-colors"
           >
             Sign in
           </button>
@@ -220,7 +220,7 @@ if (storedTheme) {
             v-if="authLoaded && isAuthenticated"
             type="button"
             @click="navigate('/profile')"
-            class="rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-2 text-left text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100 dark:border-emerald-500/40 dark:bg-emerald-500/10 dark:text-emerald-300 dark:hover:bg-emerald-500/20"
+            class="rounded-md border border-neutral-200 dark:border-neutral-800 text-[#171717] dark:text-[#ffffff] bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900 px-3 py-2 text-left text-sm font-semibold transition-colors"
           >
             {{ authUser?.username || 'Profile' }}
           </button>
@@ -228,7 +228,7 @@ if (storedTheme) {
             v-if="authLoaded && isAuthenticated"
             type="button"
             @click="signOut"
-            class="rounded-xl border border-rose-300 bg-rose-50 px-3 py-2 text-left text-sm font-semibold text-rose-700 transition hover:bg-rose-100 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-300 dark:hover:bg-rose-500/20"
+            class="rounded-md text-neutral-500 hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400 bg-transparent px-3 py-2 text-left text-sm font-semibold transition-colors"
           >
             Sign out
           </button>
@@ -238,17 +238,17 @@ if (storedTheme) {
             :key="item.to"
             type="button"
             @click="navigate(item.to)"
-            class="rounded-xl px-3 py-2 text-left text-sm font-medium transition-colors"
-            :class="item.adminOnly ? 
-              (route.path === item.to || route.path.startsWith('/admin') ? 'bg-purple-600 text-white dark:bg-purple-500' : 'text-gray-600 hover:bg-purple-50 hover:text-purple-700 dark:text-gray-300 dark:hover:bg-purple-900/30 dark:hover:text-purple-300') :
-              (route.path === item.to || (item.to === '/docs' && route.path.startsWith('/docs')) ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white')"
+            class="rounded-md px-3 py-2 text-left text-sm font-medium transition-colors"
+            :class="(route.path === item.to || (item.to === '/docs' && route.path.startsWith('/docs')) || (item.to === '/admin' && route.path.startsWith('/admin'))) ? 
+              'bg-neutral-100 text-[#171717] dark:bg-neutral-900 dark:text-[#ffffff]' : 
+              'text-neutral-500 hover:text-[#171717] hover:bg-neutral-50 dark:text-neutral-400 dark:hover:text-[#ffffff] dark:hover:bg-neutral-900/50'"
           >
             {{ item.label }}
           </button>
           <button
             type="button"
             @click="navigate('/docs')"
-            class="mt-2 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-lg transition hover:from-blue-700 hover:to-purple-700"
+            class="mt-2 inline-flex items-center justify-center rounded-md bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 px-4 py-3 text-sm font-semibold transition-colors"
           >
             Open Documentation
           </button>

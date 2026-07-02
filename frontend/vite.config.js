@@ -20,7 +20,8 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': new URL(process.env.VITE_API_URL).origin,
+      // '/api': new URL(process.env.VITE_API_URL).origin,
+      '/api': new URL(process.env.VITE_API_URL || 'http://localhost:5000').origin,
     },
   },
 })
