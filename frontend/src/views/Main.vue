@@ -340,18 +340,18 @@ if (!auth.state.loaded) {
 </script>
 
 <template>
-  <div class="flex flex-col md:flex-row h-[calc(100vh-70px)] bg-slate-50 dark:bg-slate-950 overflow-hidden font-sans text-slate-900 dark:text-slate-100">
+  <div class="flex flex-col md:flex-row h-[calc(100vh-70px)] bg-[#fafafa] dark:bg-[#000000] overflow-hidden font-sans text-[#171717] dark:text-[#ffffff]">
     <!-- Sidebar -->
     <aside
-      class="fixed md:relative z-30 md:z-auto h-full bg-white dark:bg-slate-900 transition-all duration-300 overflow-y-auto"
+      class="fixed md:relative z-30 md:z-auto h-full bg-[#ffffff] dark:bg-[#000000] border-r border-neutral-200/80 dark:border-neutral-800/80 transition-all duration-300 overflow-y-auto"
       :class="[
         sidebarVisible ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
         'w-72 md:w-80'
       ]"
     >
-      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+      <div class="p-6 border-b border-neutral-200/80 dark:border-neutral-800/80 flex items-center justify-between">
         <h2 class="font-bold text-xl tracking-tight">Stream</h2>
-        <button @click="sidebarVisible = false" class="block md:hidden p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+        <button @click="sidebarVisible = false" class="block md:hidden p-2 hover:bg-neutral-50 dark:hover:bg-neutral-900 rounded-md border border-neutral-200 dark:border-neutral-800 transition-colors">
           Close
         </button>
       </div>
@@ -362,17 +362,17 @@ if (!auth.state.loaded) {
           :key="user.name"
           @click="selectUser(user.name)"
           :class="[
-            'group flex items-center gap-4 p-3 rounded-2xl cursor-pointer transition-all',
-            selectedUser === user.name ? 'bg-indigo-50 dark:bg-indigo-500/10 ring-1 ring-indigo-500/20' : 'hover:bg-slate-50 dark:hover:bg-slate-800/50'
+            'group flex items-center gap-4 p-3 rounded-md cursor-pointer transition-all',
+            selectedUser === user.name ? 'bg-neutral-100 text-[#171717] dark:bg-neutral-900 dark:text-[#ffffff] ring-1 ring-neutral-200 dark:ring-neutral-800' : 'hover:bg-neutral-50 dark:hover:bg-neutral-900/50'
           ]"
         >
           <div class="relative">
-            <img :src="user.avatar" alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-slate-300 dark:border-slate-700">
-            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></span>
+            <img :src="user.avatar" alt="Avatar" class="w-10 h-10 rounded-md object-cover border border-neutral-200 dark:border-neutral-800">
+            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#ffffff] dark:border-[#000000] rounded-full"></span>
           </div>
           <div class="min-w-0">
             <p class="font-semibold truncate">{{ user.name }}</p>
-            <p class="text-xs text-slate-500">{{ user.logs.length }} events</p>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400">{{ user.logs.length }} events</p>
           </div>
         </div>
       </div>
@@ -380,22 +380,22 @@ if (!auth.state.loaded) {
 
     <!-- Main -->
     <main class="flex-1 flex flex-col min-w-0 overflow-hidden">
-      <header class="h-16 md:h-20 flex items-center justify-between px-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-10">
+      <header class="h-16 md:h-20 flex items-center justify-between px-8 bg-[#ffffff]/90 dark:bg-[#000000]/90 border-b border-neutral-200/80 dark:border-neutral-800/80 backdrop-blur-md z-10">
         <div class="flex items-center gap-4">
-          <button @click="sidebarVisible = !sidebarVisible" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+          <button @click="sidebarVisible = !sidebarVisible" class="p-2 hover:bg-neutral-50 dark:hover:bg-neutral-900 rounded-md border border-neutral-200 dark:border-neutral-800 transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
           </button>
           <div>
             <h1 class="text-sm md:text-lg font-bold flex flex-wrap items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               {{ route.query.room || 'No Room Selected' }}
             </h1>
-            <div class="flex items-center gap-3 text-xs text-slate-500 font-medium">
+            <div class="flex items-center gap-3 text-xs text-neutral-500 dark:text-neutral-400 font-medium">
               <span class="flex items-center gap-1">
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                 {{ viewers.length }} watching
               </span>
-              <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 uppercase tracking-widest text-[10px]">
+              <span class="px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 uppercase tracking-widest text-[10px]">
                 {{ roomInfo?.visibility || 'private' }}
               </span>
             </div>
@@ -403,44 +403,44 @@ if (!auth.state.loaded) {
         </div>
 
         <div class="flex items-center gap-3">
-          <button @click="loadRoom(false)" class="px-4 py-2 bg-slate-900 dark:bg-white dark:text-slate-900 text-white rounded-xl text-sm font-bold hover:scale-105 transition-transform">
+          <button @click="loadRoom(false)" class="bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-md px-4 py-2 text-sm font-medium transition-colors">
             {{ route.query.room ? 'Switch Room' : 'Join Room' }} 
           </button>
-          <button @click="openSettings" class="p-2 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800">
-             <svg viewBox="0 0 24 24" class="w-5 h-5 text-slate-600 dark:fill-gray-300 fill-gray-700 dark:stroke-gray-300 stroke-gray-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button @click="openSettings" class="p-2 border border-neutral-200 dark:border-neutral-800 rounded-md hover:bg-neutral-50 dark:hover:bg-neutral-900 bg-[#ffffff] dark:bg-[#000000] transition-colors">
+             <svg viewBox="0 0 24 24" class="w-5 h-5 text-neutral-600 dark:fill-neutral-300 fill-neutral-700 dark:stroke-neutral-300 stroke-neutral-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
             </svg>
           </button>
         </div>
       </header>
 
-      <section class="px-8 py-3 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+      <section class="px-8 py-3 bg-[#ffffff] dark:bg-[#000000] border-b border-neutral-200/80 dark:border-neutral-800/80">
         <div class="flex flex-wrap items-center gap-3">
           <div class="relative flex-1 max-w-xs">
-            <input v-model="filter.module" type="text" placeholder="Filter by module..." class="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
-            <svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <input v-model="filter.module" type="text" placeholder="Filter by module..." class="w-full pl-9 pr-4 py-2 bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md text-sm outline-none focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400" />
+            <svg class="w-4 h-4 absolute left-3 top-3 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
           </div>
           <div class="relative flex-1 max-w-sm">
-            <input v-model="filter.message" type="text" placeholder="Filter by log message..." class="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none" />
-            <svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <input v-model="filter.message" type="text" placeholder="Filter by log message..." class="w-full pl-9 pr-4 py-2 bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md text-sm outline-none focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400" />
+            <svg class="w-4 h-4 absolute left-3 top-3 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           </div>
           <div class="relative flex-1 max-w-sm">
-            <input v-model="filter.timestamp" type="datetime-local" class="pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm outline-none" />
-            <span class="w-4 h-4 absolute left-3 top-2 text-slate-400">>=</span>
+            <input v-model="filter.timestamp" type="datetime-local" class="w-full pl-9 pr-4 py-2 bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md text-sm outline-none focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400" />
+            <span class="w-4 h-4 absolute left-3 top-2.5 text-neutral-400 font-mono">>=</span>
           </div>
-          <button @click="clearLogs" class="px-4 py-2 bg-red-600 text-white rounded-xl text-sm font-bold hover:bg-red-700 transition-colors">
+          <button @click="clearLogs" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md text-sm font-medium transition-colors">
             Clear Logs
           </button>
         </div>
       </section>
 
       <!-- Logs Area -->
-      <div class="flex-1 overflow-y-auto px-6 py-1 space-y-8 bg-gray-50 dark:bg-gray-950" v-if="selectedUser && users[selectedUser]">
+      <div class="flex-1 overflow-y-auto px-6 py-6 space-y-8 bg-[#ffffff] dark:bg-[#000000]" v-if="selectedUser && users[selectedUser]">
         <div v-for="level in getActiveLevels()" :key="level" class="space-y-3">
           <!-- Level Header -->
           <details open>
             <summary
-              class="sticky top-0 z-10 flex items-center justify-between px-5 py-2 rounded-2xl text-white font-medium shadow-sm cursor-pointer"
+              class="sticky top-0 z-10 flex items-center justify-between px-5 py-2 rounded-md text-white font-medium shadow-sm cursor-pointer"
               :class="logGroupStyles[level] || logGroupStyles.DEFAULT"
             >
               <div class="flex items-center gap-3">
@@ -453,31 +453,31 @@ if (!auth.state.loaded) {
             </summary>
 
             <!-- Log Cards -->
-            <div class="space-y-3">
+            <div class="space-y-3 mt-3">
               <div
                 v-for="log in getLogsByLevel(level)"
                 :key="log.timestamp.getTime()"
-                class="bg-white dark:bg-gray-900 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-all"
+                class="bg-[#ffffff] dark:bg-[#0b0a0a] border border-neutral-200/60 dark:border-neutral-800/60 hover:border-neutral-300 dark:hover:border-neutral-700 rounded-md transition-all p-4 shadow-none"
               >
                 <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                   <div class="flex-1">
                     <div class="flex items-center gap-3 mb-3">
-                      <div class="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-gray-600 dark:text-gray-400">
+                      <div class="text-xs font-mono bg-neutral-50 border border-neutral-200 text-neutral-600 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-400 px-3 py-1 rounded-md">
                         {{ log.module || 'unknown' }}
                       </div>
-                      <div class="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                      <div class="text-xs text-neutral-500 dark:text-neutral-400 font-medium">
                         {{ formatTimestamp(log.timestamp) }}
                       </div>
                     </div>
 
-                    <p class="text-gray-800 dark:text-gray-200 leading-relaxed">
+                    <p class="text-[#171717] dark:text-[#ffffff] leading-relaxed font-mono text-sm whitespace-pre-wrap">
                       {{ log.message }}
                     </p>
                   </div>
 
                   <button 
                     @click="copyToClipboard(log.message, $event)"
-                    class="text-xs px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-xl transition-colors flex items-center gap-1 text-gray-600 dark:text-gray-400"
+                    class="text-xs px-3 py-1.5 bg-neutral-50 border border-neutral-200 text-neutral-600 hover:bg-neutral-100 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-800/80 rounded-md transition-colors flex items-center gap-1"
                   >
                     📋 Copy
                   </button>
@@ -487,27 +487,27 @@ if (!auth.state.loaded) {
           </details>
         </div>
 
-        <div v-if="filteredLogs.length === 0" class="text-center py-20 text-gray-500">
+        <div v-if="filteredLogs.length === 0" class="text-center py-20 text-neutral-500">
           <p class="text-6xl mb-4">🔍</p>
           <p class="mb-4">No logs match your current filters</p>
-          <button @click="sendATestLog" class="bg-indigo-600 text-white px-4 py-2 rounded-xl font-bold hover:bg-indigo-700 transition-colors">
+          <button @click="sendATestLog" class="bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 px-4 py-2 rounded-md font-medium transition-colors">
             Send a test log
           </button>
         </div>
       </div>
 
-      <div v-if="Object.keys(users).length === 0" class="flex-1 flex flex-col gap-4 items-center justify-center text-gray-400">
+      <div v-if="Object.keys(users).length === 0" class="flex-1 flex flex-col gap-4 items-center justify-center text-neutral-400">
         <div class="text-center">
           <p class="text-7xl mb-6">👻</p>
           <p class="text-xl">No users have sent logs yet</p>
         </div>
-        <button @click="sendATestLog" class="bg-indigo-600 text-white px-4 py-2 rounded-xl font-bold hover:bg-indigo-700 transition-colors">
+        <button @click="sendATestLog" class="bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 px-4 py-2 rounded-md font-medium transition-colors">
           Send a test log
         </button>
       </div>
 
       <!-- Empty State -->
-      <div v-else-if="!selectedUser" class="flex-1 flex items-center justify-center text-gray-400">
+      <div v-else-if="!selectedUser" class="flex-1 flex items-center justify-center text-neutral-400">
         <div class="text-center">
           <p class="text-7xl mb-6">📭</p>
           <p class="text-xl">Select a user to view their logs</p>
@@ -516,53 +516,53 @@ if (!auth.state.loaded) {
     </main>
 
     <transition name="slide">
-      <aside v-if="showSettings" class="fixed inset-y-0 right-0 w-96 bg-white dark:bg-slate-900 shadow-2xl z-50 p-8 border-l border-slate-200 dark:border-slate-800 overflow-y-auto">
+      <aside v-if="showSettings" class="fixed inset-y-0 right-0 w-96 bg-[#ffffff] dark:bg-[#000000] border-l border-neutral-200/80 dark:border-neutral-800/80 shadow-xl z-50 p-8 overflow-y-auto">
         <div class="flex items-center justify-between mb-8">
           <h2 class="text-xl font-bold">Room Settings</h2>
-          <button @click="showSettings = false" class="text-slate-400 hover:text-slate-900">
-            <svg class="w-5 h-5" fill="none" stroke="red" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg>
+          <button @click="showSettings = false" class="text-neutral-400 hover:text-neutral-900 dark:hover:text-[#ffffff] transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
         </div>
         
         <div class="space-y-6 mb-8">
           <div>
-            <label class="text-xs font-bold uppercase text-slate-400 tracking-widest block mb-4">Manage Access</label>
+            <label class="text-xs font-bold uppercase text-neutral-400 tracking-widest block mb-4">Manage Access</label>
             <div class="space-y-3">
-              <input v-model="shareUsername" type="text" placeholder="Username" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 rounded-xl border-none outline-none focus:ring-2 focus:ring-indigo-500" />
+              <input v-model="shareUsername" type="text" placeholder="Username" class="w-full px-4 py-3 bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md text-sm outline-none focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400" />
               <div class="flex items-center justify-between">
                 <span class="text-sm">Allow Write Access</span>
-                <input v-model="shareCanWrite" type="checkbox" class="w-5 h-5 accent-indigo-600" />
+                <input v-model="shareCanWrite" type="checkbox" class="w-5 h-5 accent-[#171717] dark:accent-[#ffffff]" />
               </div>
-              <button @click="shareRoom" class="w-full py-3 bg-indigo-600 text-white rounded-xl font-bold shadow-lg shadow-indigo-600/20">Invite User</button>
+              <button @click="shareRoom" class="w-full py-3 bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-md font-medium transition-colors">Invite User</button>
             </div>
           </div>
 
-          <div class="pt-6 border-t border-slate-100 dark:border-slate-800">
-            <label class="text-xs font-bold uppercase text-slate-400 tracking-widest block mb-4">Visibility</label>
+          <div class="pt-6 border-t border-neutral-200 dark:border-neutral-800">
+            <label class="text-xs font-bold uppercase text-neutral-400 tracking-widest block mb-4">Visibility</label>
             <div class="grid grid-cols-2 gap-3">
-              <button @click="updateVisibility('private')" :class="roomInfo?.visibility === 'private' ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800'" class="py-3 rounded-xl text-sm font-bold transition-all">Private</button>
-              <button @click="updateVisibility('public')" :class="roomInfo?.visibility === 'public' ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800'" class="py-3 rounded-xl text-sm font-bold transition-all">Public</button>
+              <button @click="updateVisibility('private')" :class="roomInfo?.visibility === 'private' ? 'bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000]' : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-500 hover:bg-neutral-200 dark:hover:bg-neutral-800'" class="py-3 rounded-md text-sm font-medium transition-colors">Private</button>
+              <button @click="updateVisibility('public')" :class="roomInfo?.visibility === 'public' ? 'bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000]' : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-500 hover:bg-neutral-200 dark:hover:bg-neutral-800'" class="py-3 rounded-md text-sm font-medium transition-colors">Public</button>
             </div>
           </div>
         </div>
-        <section class="space-y-3 rounded-2xl border border-slate-200 p-4 dark:border-slate-800">
-          <div class="text-sm font-semibold text-slate-900 dark:text-slate-100">Shared with</div>
+        <section class="space-y-3 rounded-md border border-neutral-200 p-4 dark:border-neutral-800">
+          <div class="text-sm font-semibold text-[#171717] dark:text-[#ffffff]">Shared with</div>
           <div v-if="roomInfo?.shared_with?.length" class="space-y-2">
             <div
               v-for="entry in roomInfo.shared_with"
               :key="entry.username"
-              class="flex items-center justify-between gap-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-800"
+              class="flex items-center justify-between gap-3 rounded-md bg-neutral-50 border border-neutral-200 p-3 dark:bg-neutral-900 dark:border-neutral-800"
             >
               <div class="min-w-0">
-                <div class="truncate text-sm font-medium text-slate-900 dark:text-slate-100">{{ entry.username }}</div>
-                <div class="text-xs text-slate-500 dark:text-slate-400">{{ entry.can_write ? 'Can write' : 'Read only' }}</div>
+                <div class="truncate text-sm font-medium text-[#171717] dark:text-[#ffffff]">{{ entry.username }}</div>
+                <div class="text-xs text-neutral-500 dark:text-neutral-400">{{ entry.can_write ? 'Can write' : 'Read only' }}</div>
               </div>
-              <button class="rounded-full px-3 py-1 text-xs font-medium text-red-600 hover:bg-red-50 dark:text-red-300 dark:hover:bg-red-950/40" @click="unshareRoom(entry.username)">
+              <button class="rounded-md border border-red-200 dark:border-red-900/50 px-3 py-1 text-xs font-medium text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/20 transition-colors" @click="unshareRoom(entry.username)">
                 Remove
               </button>
             </div>
           </div>
-          <div v-else class="text-sm text-slate-500 dark:text-slate-400">
+          <div v-else class="text-sm text-neutral-500 dark:text-neutral-400">
             No shared users yet.
           </div>
         </section>
@@ -573,17 +573,21 @@ if (!auth.state.loaded) {
 
 <style scoped>
 .btn-primary {
-  background: linear-gradient(to right, #4f46e5, #6366f1);
+  background: #171717;
   color: white;
   padding: 10px 20px;
-  border-radius: 9999px;
+  border-radius: 6px;
   font-weight: 500;
   transition: all 0.2s;
 }
 
+.dark .btn-primary {
+  background: white;
+  color: black;
+}
+
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 15px -3px rgb(79 70 229 / 0.3);
+  opacity: 0.9;
 }
 
 .slide-enter-active, .slide-leave-active {
