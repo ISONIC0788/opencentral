@@ -289,33 +289,33 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100">
+  <div class="min-h-screen bg-[#fafafa] dark:bg-[#000000] font-sans text-[#171717] dark:text-[#ffffff]">
     <div class="mx-auto max-w-5xl px-6 py-12">
       
       <header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div class="flex items-center gap-5">
-          <div v-if="!user?.avatar_url" class="h-20 w-20 flex items-center justify-center rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-600 text-2xl font-bold text-white shadow-xl shadow-indigo-500/20">
+          <div v-if="!user?.avatar_url" class="h-20 w-20 flex items-center justify-center rounded-md bg-neutral-100 text-[#171717] dark:bg-neutral-900 dark:text-[#ffffff] text-2xl font-bold border border-neutral-200 dark:border-neutral-800">
             {{ (user?.username || '?').slice(0, 2).toUpperCase() }}
           </div>
-          <img v-else :src="user?.avatar_url" class="h-20 w-20 rounded-3xl object-cover shadow-xl" />
+          <img v-else :src="user?.avatar_url" class="h-20 w-20 rounded-md object-cover border border-neutral-200 dark:border-neutral-800" />
           
           <div>
             <h1 class="text-3xl font-black tracking-tight">{{ user?.display_name || user?.username }}</h1>
-            <p class="text-slate-500 font-medium">{{ user?.email || 'Personal Account' }}</p>
+            <p class="text-neutral-500 dark:text-neutral-400 font-medium">{{ user?.email || 'Personal Account' }}</p>
           </div>
         </div>
       </header>
 
-      <nav class="flex items-center justify-between bg-white dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 mb-8 shadow-sm overflow-x-auto">
+      <nav class="flex items-center justify-between bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-800 rounded-md p-1 mb-8 shadow-sm overflow-x-auto">
         <button 
           v-for="tab in tabs" 
           :key="tab.id"
           @click="activeTab = tab.id"
           :class="[
-            'flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap',
+            'flex items-center gap-2 px-6 py-2.5 text-sm font-medium transition-all whitespace-nowrap',
             activeTab === tab.id 
-              ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-lg' 
-              : 'text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800'
+              ? 'bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] shadow-sm rounded-md' 
+              : 'text-neutral-500 hover:text-[#171717] dark:hover:text-[#ffffff] hover:bg-neutral-50 dark:hover:bg-neutral-900/50 rounded-md'
           ]"
         >
           <span>{{ tab.icon }}</span>
@@ -323,14 +323,14 @@ onMounted(async () => {
         </button>
       </nav>
 
-      <main class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm min-h-[400px] overflow-hidden">
+      <main class="bg-[#ffffff] dark:bg-[#000000] border border-neutral-200/80 dark:border-neutral-800/80 rounded-md shadow-sm min-h-[400px] overflow-hidden">
         
         <section v-if="activeTab === 'account'" class="p-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
           <h3 class="text-xl font-bold mb-6">Profile Details</h3>
           <div class="grid md:grid-cols-2 gap-6">
             <div v-for="(label, key) in { 'Username': user?.username, 'Provider': provider, 'Display Name': user?.display_name, 'Email': user?.email }" :key="key" 
-                 class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700/50">
-              <p class="text-[10px] uppercase tracking-widest font-black text-slate-400 mb-1">{{ key }}</p>
+                 class="p-4 bg-neutral-50/60 border border-neutral-200/80 dark:bg-neutral-900/40 dark:border-neutral-800/80 rounded-md">
+              <p class="text-[10px] uppercase tracking-widest font-semibold text-neutral-400 dark:text-neutral-500 mb-1">{{ key }}</p>
               <p class="font-mono text-sm">{{ label || '—' }}</p>
             </div>
           </div>
@@ -340,39 +340,39 @@ onMounted(async () => {
           <div class="flex items-center justify-between mb-6">
             <div>
               <h3 class="text-xl font-bold">API Access</h3>
-              <p class="text-sm text-slate-500">Manage keys for external integration.</p>
+              <p class="text-sm text-neutral-500">Manage keys for external integration.</p>
             </div>
           </div>
 
           <div class="flex gap-3 mb-8">
-            <input v-model="keyLabel" type="text" placeholder="Key label..." class="flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500" />
-            <button @click="generateApiKey" :disabled="generating" class="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-500 disabled:opacity-50">
+            <input v-model="keyLabel" type="text" placeholder="Key label..." class="flex-1 px-3 py-2 bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md text-sm text-[#171717] dark:text-[#ffffff] focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400 outline-none" />
+            <button @click="generateApiKey" :disabled="generating" class="px-4 py-2 bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 font-medium text-sm rounded-md transition-colors disabled:opacity-50">
               {{ generating ? 'Generating...' : 'New Key' }}
             </button>
           </div>
 
-          <p v-if="keyError" class="mt-3 rounded-xl border border-rose-300 bg-rose-50 px-3 py-2 text-sm text-rose-700 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-300">
+          <p v-if="keyError" class="mt-3 rounded-md border border-rose-300 bg-rose-50 px-3 py-2 text-sm text-rose-700 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-300">
             {{ keyError }}
           </p>
-          <div v-if="newKeyValue" class="m-4 rounded-xl border border-amber-300 bg-amber-50 p-4 dark:border-amber-500/40 dark:bg-amber-500/10">
+          <div v-if="newKeyValue" class="m-4 rounded-md border border-amber-300 bg-amber-50 p-4 dark:border-amber-500/40 dark:bg-amber-500/10">
             <p class="text-sm font-semibold text-amber-800 dark:text-amber-300">Copy this key now. It will not be shown again.</p>
-            <p class="mt-2 break-all rounded-lg bg-white px-3 py-2 font-mono text-xs text-slate-900 dark:bg-slate-900 dark:text-amber-100">{{ newKeyValue }}</p>
+            <p class="mt-2 break-all rounded-md bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-800 px-3 py-2 font-mono text-xs text-[#171717] dark:text-amber-100">{{ newKeyValue }}</p>
             <button
               type="button"
               @click="copyKey"
-              class="mt-3 rounded-lg border border-amber-400 px-3 py-1 text-sm font-medium text-amber-800 transition hover:bg-amber-100 dark:border-amber-400/50 dark:text-amber-200 dark:hover:bg-amber-500/10"
+              class="mt-3 border border-neutral-200 dark:border-neutral-800 text-[#171717] dark:text-[#ffffff] bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900 px-4 py-2 font-medium text-sm rounded-md transition-colors"
             >
               Copy key
             </button>
           </div>
 
           <div class="space-y-3">
-            <div v-for="key in apiKeys" :key="key.id" class="flex items-center justify-between p-4 border border-slate-100 dark:border-slate-800 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+            <div v-for="key in apiKeys" :key="key.id" class="flex items-center justify-between p-4 border border-neutral-200 dark:border-neutral-800 rounded-md bg-neutral-50/40 dark:bg-neutral-900/20 hover:bg-neutral-50 dark:hover:bg-neutral-900/50 transition-colors">
               <div>
                 <p class="font-bold text-sm">{{ key.label || 'Unnamed Key' }}</p>
-                <code class="text-xs text-indigo-500">{{ key.key_preview }}</code>
+                <code class="text-xs text-neutral-500 dark:text-neutral-400 font-mono">{{ key.key_preview }}</code>
               </div>
-              <button @click="revokeApiKey(key.id)" class="text-xs font-bold text-red-500 hover:underline">Revoke</button>
+              <button @click="revokeApiKey(key.id)" class="text-neutral-500 hover:text-red-600 dark:text-neutral-400 dark:hover:text-red-400 font-medium text-sm bg-transparent transition-colors">Revoke</button>
             </div>
           </div>
         </section>
@@ -381,20 +381,20 @@ onMounted(async () => {
           <div class="flex items-center justify-between gap-4 mb-6">
             <div>
               <h3 class="text-xl font-bold">Rooms</h3>
-              <p class="text-sm text-slate-500">Browse rooms you can access and create rooms.</p>
+              <p class="text-sm text-neutral-500">Browse rooms you can access and create rooms.</p>
             </div>
             <button
               type="button"
               @click="loadRooms"
-              class="rounded-xl bg-slate-300 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+              class="border border-neutral-200 dark:border-neutral-800 text-[#171717] dark:text-[#ffffff] bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900 px-4 py-2 font-medium text-sm rounded-md transition-colors"
             >
               Refresh
             </button>
           </div>
 
-          <div class="mb-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
-            <p class="text-sm font-semibold text-slate-900 dark:text-white">Create personal room</p>
-            <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Current plan: <span class="font-bold uppercase">{{ currentPlan }}</span></p>
+          <div class="mb-6 rounded-md border border-neutral-200/80 bg-neutral-50/60 p-4 dark:border-neutral-800/80 dark:bg-neutral-900/40">
+            <p class="text-sm font-semibold text-[#171717] dark:text-white">Create personal room</p>
+            <p class="mt-1 text-xs text-neutral-500 dark:text-neutral-400">Current plan: <span class="font-bold uppercase">{{ currentPlan }}</span></p>
 
             <div class="mt-3 grid gap-3 md:grid-cols-[1fr_auto_auto]">
               <input
@@ -402,14 +402,14 @@ onMounted(async () => {
                 :disabled="!canCreatePersonalRooms || creatingPersonalRoom"
                 type="text"
                 placeholder="Room ID"
-                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm text-slate-900 outline-none focus:border-cyan-500 disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                class="w-full bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-2 text-sm text-[#171717] dark:text-[#ffffff] focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400 outline-none disabled:cursor-not-allowed disabled:opacity-60"
               />
               <!--select an org to own room -->
               <select
                 v-if="orgs.length > 0"
                 v-model="activeOrg"
                 :disabled="!canCreatePersonalRooms || creatingPersonalRoom"
-                class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-cyan-500 disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                class="bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-2 text-sm text-[#171717] dark:text-[#ffffff] focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400 outline-none disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <option value="" selected>Personal room</option>
                 <option v-for="org in orgs" :key="org.name" :value="org.name">Org: {{ org.name }}</option>
@@ -417,7 +417,7 @@ onMounted(async () => {
               <select
                 v-model="personalRoomVisibility"
                 :disabled="!canCreatePersonalRooms || creatingPersonalRoom"
-                class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-cyan-500 disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                class="bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-2 text-sm text-[#171717] dark:text-[#ffffff] focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400 outline-none disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <option value="private">private</option>
                 <option value="public">public</option>
@@ -426,7 +426,7 @@ onMounted(async () => {
                 type="button"
                 :disabled="!canCreatePersonalRooms || creatingPersonalRoom"
                 @click="createRoom('personal')"
-                class="rounded-xl bg-cyan-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-cyan-500 disabled:cursor-not-allowed disabled:opacity-60"
+                class="bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 px-4 py-2 font-medium text-sm rounded-md transition-colors disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {{ creatingPersonalRoom ? 'Creating...' : 'Create room' }}
               </button>
@@ -437,57 +437,57 @@ onMounted(async () => {
             </p>
           </div>
 
-          <p v-if="roomsError" class="mb-4 rounded-xl border border-rose-300 bg-rose-50 px-3 py-2 text-sm text-rose-700 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-300">
+          <p v-if="roomsError" class="mb-4 rounded-md border border-rose-300 bg-rose-50 px-3 py-2 text-sm text-rose-700 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-300">
             {{ roomsError }}
           </p>
 
-          <p v-if="roomsLoading" class="text-sm text-slate-500 dark:text-slate-400">Loading rooms...</p>
+          <p v-if="roomsLoading" class="text-sm text-neutral-500 dark:text-neutral-400">Loading rooms...</p>
 
           <div v-else class="space-y-3">
             <div
               v-for="room in rooms"
               :key="room.room"
-              class="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900/70 md:flex-row md:items-center md:justify-between"
+              class="flex flex-col gap-3 rounded-md border border-neutral-200 dark:border-neutral-800 bg-[#ffffff] dark:bg-[#000000]/60 p-4 md:flex-row md:items-center md:justify-between"
             >
               <div>
-                <p class="font-bold text-slate-900 dark:text-white">{{ room.room }}</p>
+                <p class="font-bold text-neutral-900 dark:text-white">{{ room.room }}</p>
                 <div class="mt-1 flex flex-wrap items-center gap-2 text-xs">
-                  <span class="rounded-full bg-slate-100 px-2 py-1 text-slate-700 dark:bg-slate-800 dark:text-slate-200">{{ room.owner_type }}:{{ room.owner_id }}</span>
-                  <span class="rounded-full bg-cyan-100 px-2 py-1 text-cyan-700 dark:bg-cyan-500/20 dark:text-cyan-200">{{ room.visibility }}</span>
-                  <span class="rounded-full bg-indigo-100 px-2 py-1 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-200">{{ room.room_type }}</span>
-                  <span class="rounded-full bg-emerald-100 px-2 py-1 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-200">{{ formatBytes(room.max_log_size) }} cap</span>
+                  <span class="rounded-md bg-neutral-100 px-2 py-0.5 text-neutral-600 dark:bg-neutral-900 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800">{{ room.owner_type }}:{{ room.owner_id }}</span>
+                  <span class="rounded-md bg-neutral-100 px-2 py-0.5 text-neutral-600 dark:bg-neutral-900 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800">{{ room.visibility }}</span>
+                  <span class="rounded-md bg-neutral-100 px-2 py-0.5 text-neutral-600 dark:bg-neutral-900 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800">{{ room.room_type }}</span>
+                  <span class="rounded-md bg-neutral-100 px-2 py-0.5 text-neutral-600 dark:bg-neutral-900 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-800">{{ formatBytes(room.max_log_size) }} cap</span>
                 </div>
               </div>
 
               <div class="flex items-center gap-2">
-                <span class="text-xs font-semibold" :class="room.can_write ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'">
+                <span class="text-xs font-semibold" :class="room.can_write ? 'text-emerald-600 dark:text-emerald-400' : 'text-neutral-500 dark:text-neutral-400'">
                   {{ room.can_write ? 'write access' : 'read only' }}
                 </span>
                 <button
                   type="button"
                   @click="router.push({ name: 'logs', query: { room: room.room } })"
-                  class="rounded-xl bg-slate-900 px-3 py-2 text-xs font-semibold text-white transition hover:bg-slate-700 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
+                  class="border border-neutral-200 dark:border-neutral-800 text-[#171717] dark:text-[#ffffff] bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900 px-3 py-1.5 font-medium text-xs rounded-md transition-colors"
                 >
                   Open
                 </button>
               </div>
             </div>
 
-            <p v-if="rooms.length === 0" class="rounded-xl border border-dashed border-slate-300 px-4 py-6 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
+            <p v-if="rooms.length === 0" class="rounded-md border border-dashed border-neutral-200 dark:border-neutral-800 px-4 py-6 text-center text-sm text-neutral-500 dark:text-neutral-400">
               No accessible rooms found yet.
             </p>
           </div>
         </section>
 
         <section v-if="activeTab === 'orgs'" class="p-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
-          <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Organisations</h2>
-          <p class="mt-2 text-sm text-slate-500 dark:text-slate-300">Team plan users can invite members to their orgs, and create org rooms.</p>
+          <h2 class="text-xl font-semibold text-[#171717] dark:text-white">Organisations</h2>
+          <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-300">Team plan users can invite members to their orgs, and create org rooms.</p>
 
           <div class="mt-4">
-            <label class="mb-1 block text-xs uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">Selected org</label>
+            <label class="mb-1 block text-xs uppercase tracking-[0.12em] text-neutral-500 dark:text-neutral-400">Selected org</label>
             <select
               v-model="activeOrg"
-              class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm text-slate-900 outline-none focus:border-cyan-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+              class="w-full bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-2 text-sm text-[#171717] dark:text-[#ffffff] focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400 outline-none"
             >
               <option value="">Select organisation</option>
               <option v-for="org in orgs" :key="org.name" :value="org.name">{{ org.name }}</option>
@@ -495,17 +495,17 @@ onMounted(async () => {
           </div>
 
           <div v-if="selectedOrg" class="mt-4 grid gap-4 sm:grid-cols-2">
-            <div class="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900/70">
-              <p class="text-sm font-semibold text-slate-900 dark:text-white">Invite member</p>
+            <div class="rounded-md border border-neutral-200 dark:border-neutral-800 bg-[#ffffff] dark:bg-[#000000]/60 p-4">
+              <p class="text-sm font-semibold text-neutral-900 dark:text-white">Invite member</p>
               <input
                 v-model="memberUsername"
                 type="text"
                 placeholder="Username"
-                class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-cyan-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                class="mt-2 w-full bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-2 text-sm text-[#171717] dark:text-[#ffffff] focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400 outline-none"
               />
               <select
                 v-model="memberRole"
-                class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-cyan-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                class="mt-2 w-full bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-2 text-sm text-[#171717] dark:text-[#ffffff] focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400 outline-none"
               >
                 <option value="viewer">viewer</option>
                 <option value="developer">developer</option>
@@ -514,23 +514,23 @@ onMounted(async () => {
               <button
                 type="button"
                 @click="inviteMember"
-                class="mt-2 rounded-xl bg-emerald-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500"
+                class="mt-2 w-full bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 px-4 py-2 font-medium text-sm rounded-md transition-colors"
               >
                 Invite
               </button>
             </div>
 
-            <div class="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900/70">
-              <p class="text-sm font-semibold text-slate-900 dark:text-white">Create org room</p>
+            <div class="rounded-md border border-neutral-200 dark:border-neutral-800 bg-[#ffffff] dark:bg-[#000000]/60 p-4">
+              <p class="text-sm font-semibold text-[#171717] dark:text-white">Create org room</p>
               <input
                 v-model="orgRoomName"
                 type="text"
                 placeholder="Room ID"
-                class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-cyan-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                class="mt-2 w-full bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-2 text-sm text-[#171717] dark:text-[#ffffff] focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400 outline-none"
               />
               <select
                 v-model="orgRoomVisibility"
-                class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-cyan-500 dark:border-slate-600 dark:bg-slate-900 dark:text-white"
+                class="mt-2 w-full bg-[#ffffff] dark:bg-[#000000] border border-neutral-200 dark:border-neutral-700 rounded-md px-3 py-2 text-sm text-[#171717] dark:text-[#ffffff] focus:ring-1 focus:ring-neutral-400 focus:border-neutral-400 outline-none"
               >
                 <option value="private">private</option>
                 <option value="public">public</option>
@@ -538,18 +538,18 @@ onMounted(async () => {
               <button
                 type="button"
                 @click="createRoom('org')"
-                class="mt-2 rounded-xl bg-violet-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-violet-500"
+                class="mt-2 w-full bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 px-4 py-2 font-medium text-sm rounded-md transition-colors"
               >
                 Create room
               </button>
             </div>
           </div>
 
-          <div v-if="selectedOrg" class="mt-4 rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900/70">
-            <p class="text-sm font-semibold text-slate-900 dark:text-white">Members</p>
-            <ul class="mt-2 space-y-1 text-sm text-slate-600 dark:text-slate-300">
+          <div v-if="selectedOrg" class="mt-4 rounded-md border border-neutral-200 dark:border-neutral-800 bg-[#ffffff] dark:bg-[#000000]/60 p-4">
+            <p class="text-sm font-semibold text-[#171717] dark:text-white">Members</p>
+            <ul class="mt-2 space-y-1 text-sm text-neutral-600 dark:text-neutral-300">
               <li v-for="member in selectedOrg.members || []" :key="member.username || member">
-                {{ member.username || member }} <span class="text-xs text-slate-500">({{ member.role || 'member' }})</span>
+                {{ member.username || member }} <span class="text-xs text-neutral-500">({{ member.role || 'member' }})</span>
               </li>
             </ul>
           </div>
@@ -558,13 +558,13 @@ onMounted(async () => {
             <button
               type="button"
               @click="createOrg"
-              class="rounded-xl bg-cyan-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-cyan-500 w-fit"
+              class="bg-[#171717] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#000000] hover:bg-neutral-800 dark:hover:bg-neutral-100 px-4 py-2 font-medium text-sm rounded-md transition-colors w-fit"
             >
               Create organisation
             </button>
           </div>
 
-          <p v-if="orgActionError" class="mt-3 rounded-xl border border-rose-300 bg-rose-50 px-3 py-2 text-sm text-rose-700 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-300">
+          <p v-if="orgActionError" class="mt-3 rounded-md border border-rose-300 bg-rose-50 px-3 py-2 text-sm text-rose-700 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-300">
             {{ orgActionError }}
           </p>
         </section>
