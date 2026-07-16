@@ -243,47 +243,40 @@
           </p>
         </div>
 
-        <div class="bg-[#fafafa] dark:bg-[#0a0a0a] border border-neutral-200 dark:border-neutral-800 rounded-xl p-8">
-          <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center space-x-2">
-              <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-            </div>
-            <span class="text-neutral-500 dark:text-neutral-400 text-sm font-mono">Log Machine Live</span>
-          </div>
+        <Terminal>
+          <TypingAnimation text="Connecting to LogMachine central server..." :delay="0" class="text-neutral-500" />
+          <AnimatedSpan :delay="1500" class="text-emerald-500 block">✔ Connected to room: Log Machine Live</AnimatedSpan>
+          
+          <AnimatedSpan :delay="3000" class="block mt-4">
+            <span class="text-blue-600 dark:text-blue-400">(alice @ api_server)</span>
+            <span class="text-green-600 dark:text-green-400 ml-2">[ INFO ] Server started on port 8000</span>
+          </AnimatedSpan>
+          
+          <AnimatedSpan :delay="4500" class="block mt-2">
+            <span class="text-blue-600 dark:text-blue-400">(bob @ worker)</span>
+            <span class="text-yellow-600 dark:text-yellow-400 ml-2">[ WARNING ] High memory usage detected</span>
+          </AnimatedSpan>
+          
+          <AnimatedSpan :delay="6000" class="block mt-2">
+            <span class="text-blue-600 dark:text-blue-400">(charlie @ auth_service)</span>
+            <span class="text-red-600 dark:text-red-400 ml-2">[ ERROR ] Database connection failed</span>
+          </AnimatedSpan>
+          
+          <AnimatedSpan :delay="7500" class="block mt-2">
+            <span class="text-blue-600 dark:text-blue-400">(alice @ api_server)</span>
+            <span class="text-green-600 dark:text-green-400 ml-2">[ SUCCESS ] User authentication successful</span>
+          </AnimatedSpan>
+          
+          <TypingAnimation text="Waiting for new logs..." :delay="9000" class="text-neutral-500 mt-4" />
+        </Terminal>
 
-          <div class="space-y-3 font-mono text-sm">
-            <div class="text-green-600 dark:text-green-400">
-              <span class="text-blue-600 dark:text-blue-400">(alice @ api_server)</span> 🤌 CL Timing: [ 2024-01-15T10:30:45 ]<br>
-              <span class="text-green-600 dark:text-green-400">[ INFO ]</span> Server started on port 8000<br>
-              <span class="text-neutral-400 dark:text-neutral-500">🏁</span>
-            </div>
-            <div class="text-yellow-600 dark:text-yellow-400">
-              <span class="text-blue-600 dark:text-blue-400">(bob @ worker)</span> 🤌 CL Timing: [ 2024-01-15T10:30:46 ]<br>
-              <span class="text-yellow-600 dark:text-yellow-400">[ WARNING ]</span> High memory usage detected<br>
-              <span class="text-neutral-400 dark:text-neutral-500">🏁</span>
-            </div>
-            <div class="text-red-600 dark:text-red-400">
-              <span class="text-blue-600 dark:text-blue-400">(charlie @ auth_service)</span> 🤌 CL Timing: [ 2024-01-15T10:30:47 ]<br>
-              <span class="text-red-600 dark:text-red-400">[ ERROR ]</span> Database connection failed<br>
-              <span class="text-neutral-400 dark:text-neutral-500">🏁</span>
-            </div>
-            <div class="text-green-600 dark:text-green-400">
-              <span class="text-blue-600 dark:text-blue-400">(alice @ api_server)</span> 🤌 CL Timing: [ 2024-01-15T10:30:48 ]<br>
-              <span class="text-green-600 dark:text-green-400">[ SUCCESS ]</span> User authentication successful<br>
-              <span class="text-neutral-400 dark:text-neutral-500">🏁</span>
-            </div>
-          </div>
-
-          <div class="mt-6 text-center">
-            <router-link
-              to="/logs"
-              class="inline-flex items-center justify-center bg-[#171717] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#000000] px-6 py-3 rounded-lg hover:bg-[#000000] dark:hover:bg-[#fafafa] transition-colors"
-            >
-              See the Live logs for yourself →
-            </router-link>
-          </div>
+        <div class="mt-8 text-center">
+          <router-link
+            to="/logs"
+            class="inline-flex items-center justify-center bg-[#171717] dark:bg-[#ffffff] text-[#ffffff] dark:text-[#000000] px-6 py-3 rounded-lg hover:bg-[#000000] dark:hover:bg-[#fafafa] transition-colors"
+          >
+            See the Live logs for yourself →
+          </router-link>
         </div>
       </div>
     </section>
@@ -424,6 +417,9 @@
 <script setup>
 import { onMounted } from 'vue'
 import StripedPattern from '@/components/ui/StripedPattern.vue'
+import Terminal from '@/components/ui/Terminal.vue'
+import TypingAnimation from '@/components/ui/TypingAnimation.vue'
+import AnimatedSpan from '@/components/ui/AnimatedSpan.vue'
 
 onMounted(() => {
   // Add any landing page specific logic here
