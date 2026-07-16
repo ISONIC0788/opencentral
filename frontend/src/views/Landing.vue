@@ -2,32 +2,8 @@
   <div class="min-h-screen bg-[#fafafa] dark:bg-[#000000]">
     <!-- Hero Section -->
     <section class="relative overflow-hidden">
-      
-      <!-- Premium Animated Vector Paths Background Layer -->
-      <div class="absolute inset-0 pointer-events-none z-0">
-        <svg class="w-full h-full text-neutral-900/[0.03] dark:text-white/[0.015]" viewBox="0 0 696 316" fill="none">
-          <title>Background Paths</title>
-          <path
-            v-for="path in positivePaths"
-            :key="'pos-' + path.id"
-            :d="path.d"
-            stroke="currentColor"
-            :stroke-width="path.width"
-            stroke-dasharray="500"
-            class="animate-path-slow"
-            :style="{ animationDelay: path.delay }"
-          />
-          <path
-            v-for="path in negativePaths"
-            :key="'neg-' + path.id"
-            :d="path.d"
-            stroke="currentColor"
-            :stroke-width="path.width"
-            stroke-dasharray="500"
-            class="animate-path-slow"
-            :style="{ animationDelay: path.delay }"
-          />
-        </svg>
+      <div class="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">
+        <StripedPattern class="[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]" />
       </div>
 
       <!-- Hero Interactive Content Body Context Structure -->
@@ -447,25 +423,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
-
-// Vector math definition maps generating matching coordinates
-const generatePaths = (position) => {
-  return Array.from({ length: 36 }, (_, i) => ({
-    id: i,
-    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
-        380 - i * 5 * position
-    } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
-        152 - i * 5 * position
-    } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
-        684 - i * 5 * position
-    } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-    width: 0.5 + i * 0.03,
-    delay: `${(i * 0.2).toFixed(1)}s`
-  }))
-}
-
-const positivePaths = generatePaths(1)
-const negativePaths = generatePaths(-1)
+import StripedPattern from '@/components/ui/StripedPattern.vue'
 
 onMounted(() => {
   // Add any landing page specific logic here
