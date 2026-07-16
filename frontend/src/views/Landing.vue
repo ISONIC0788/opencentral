@@ -39,6 +39,21 @@
               <span>Read Docs</span>
             </router-link>
           </div>
+
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <AvatarCircles
+              :num-people="99"
+              :avatar-urls="[
+                { imageUrl: 'https://avatars.githubusercontent.com/u/16860528', profileUrl: 'https://github.com/dillionverma' },
+                { imageUrl: 'https://avatars.githubusercontent.com/u/20110627', profileUrl: 'https://github.com/tomonarifeehan' },
+                { imageUrl: 'https://avatars.githubusercontent.com/u/106103625', profileUrl: 'https://github.com/BankkRoll' },
+                { imageUrl: 'https://avatars.githubusercontent.com/u/59228569', profileUrl: 'https://github.com/safethecode' }
+              ]"
+            />
+            <p class="text-sm font-medium text-neutral-500 dark:text-neutral-400">
+              Trusted by developers and engineers
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -420,6 +435,7 @@ import StripedPattern from '@/components/ui/StripedPattern.vue'
 import Terminal from '@/components/ui/Terminal.vue'
 import TypingAnimation from '@/components/ui/TypingAnimation.vue'
 import AnimatedSpan from '@/components/ui/AnimatedSpan.vue'
+import AvatarCircles from '@/components/ui/AvatarCircles.vue'
 
 onMounted(() => {
   // Add any landing page specific logic here
